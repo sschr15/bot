@@ -55,9 +55,10 @@ class RedisCacheTests(unittest.IsolatedAsyncioTestCase):
         )
 
         # Test that we can get and set different types.
-        for test in test_cases:
-            await self.cog.redis.set(*test)
-            self.assertEqual(await self.cog.redis.get(test[0]), test[1])
+        for key, value in test_cases:
+            await self.cog.redis.set(key, value)
+            retrieved_value = await self.cog.redis.get(key)
+            self.assertEqual(retrieved_value, value)
 
         # Test that .get allows a default value
         self.assertEqual(await self.cog.redis.get('favorite_nothing', "bearclaw"), "bearclaw")
