@@ -59,6 +59,7 @@ class RedisCacheTests(unittest.IsolatedAsyncioTestCase):
             await self.cog.redis.set(key, value)
             retrieved_value = await self.cog.redis.get(key)
             self.assertEqual(retrieved_value, value)
+            self.assertIs(type(retrieved_value), type(value))
 
         # Test that .get allows a default value
         self.assertEqual(await self.cog.redis.get('favorite_nothing', "bearclaw"), "bearclaw")
