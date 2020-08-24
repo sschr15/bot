@@ -3,7 +3,7 @@
 Python 3 uses bankers' rounding (also known by other names), where if the fractional part of a number is `.5`, it's rounded to the nearest **even** result instead of away from zero.
 
 Example:
-```py
+```pycon
 >>> round(2.5)
 2
 >>> round(1.5)

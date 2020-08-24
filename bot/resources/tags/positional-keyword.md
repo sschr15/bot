@@ -3,7 +3,7 @@
 Functions can take two different kinds of arguments. A positional argument is just the object itself. A keyword argument is a name assigned to an object.
 
 **Example**
-```py
+```pycon
 >>> print('Hello', 'world!', sep=', ')
 Hello, world!
 ```
@@ -22,7 +22,7 @@ sum(1, 5) # same as above
 [Somtimes this is forced](https://www.python.org/dev/peps/pep-0570/#history-of-positional-only-parameter-semantics-in-python), in the case of the `pow()` function.
 
 The reverse is also true:
-```py
+```pycon
 >>> def foo(a, b):
 ...     print(a, b)
 ...

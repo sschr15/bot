@@ -3,7 +3,7 @@
 Wildcard imports are import statements in the form `from <module_name> import *`. What imports like these do is that they import everything **[1]** from the module into the current module's namespace **[2]**. This allows you to use names defined in the imported module without prefixing the module's name.
 
 Example:
-```python
+```pycon
 >>> from math import *
 >>> sin(pi / 2)
 1.0
@@ -11,7 +11,7 @@ Example:
 **This is discouraged, for various reasons:**
 
 Example:
-```python
+```pycon
 >>> from custom_sin import sin
 >>> from math import *
 >>> sin(pi / 2)  # uses sin from math rather than your custom sin
@@ -27,14 +27,14 @@ Example:
 
 • Import the module under the module's namespace (Only import the name of the module, and names defined in the module can be used by prefixing the module's name)
 
-```python
+```pycon
 >>> import math
 >>> math.sin(math.pi / 2)
 ```
 
 • Explicitly import certain names from the module
 
-```python
+```pycon
 >>> from math import sin, pi
 >>> sin(pi / 2)
 ```

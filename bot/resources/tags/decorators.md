@@ -3,7 +3,7 @@
 A decorator is a function that modifies another function.
 
 Consider the following example of a timer decorator:
-```py
+```pycon
 >>> import time
 >>> def timer(f):
 ...     def inner(*args, **kwargs):

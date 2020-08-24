@@ -13,7 +13,7 @@ If we wanted to store 5 squared in a variable called `x`, we could do that like 
 `x = square(5)`. `x` would now equal `25`.
 
 **Common Mistakes**
-```py
+```pycon
 >>> def square(n):
 ...     n*n  # calculates then throws away, returns None
 ...

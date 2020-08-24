@@ -3,7 +3,7 @@
 Imagine that you want to make all letters in a string upper case. Conveniently, strings have an `.upper()` method.
 
 You might think that this would work:
-```python
+```pycon
 >>> greeting = "hello"
 >>> greeting.upper()
 'HELLO'
@@ -15,7 +15,7 @@ You might think that this would work:
 
 That's because strings in Python are _immutable_. You can't change them, you can only pass around existing strings or create new ones.
 
-```python
+```pycon
 >>> greeting = "hello"
 >>> greeting = greeting.upper()
 >>> greeting
@@ -27,7 +27,7 @@ That's because strings in Python are _immutable_. You can't change them, you can
 `int`, `float`, `complex`, `tuple`, `frozenset` are other examples of immutable data types in Python.
 
 Mutable data types like `list`, on the other hand, can be changed in-place:
-```python
+```pycon
 >>> my_list = [1, 2, 3]
 >>> my_list.append(4)
 >>> my_list
