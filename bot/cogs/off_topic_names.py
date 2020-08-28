@@ -31,6 +31,22 @@ async def update_names(bot: Bot) -> None:
             channel_0_name, channel_1_name, channel_2_name = await bot.api_client.get(
                 'bot/off-topic-channel-names', params={'random_items': 3}
             )
+            if '.' in channel_0_name + channel_1_name + channel_2_name:
+                # one of the selected names is, in fact, an off-topic *name group*
+                if '.' in channel_0_name:
+                    names = channel_0_name.split('.')
+                elif '.' in channel_1_name:
+                    names = channel_1_name.split('.')
+                else:
+                    names = channel_2_name.split('.')
+
+                if len(names) == 2:
+                    other_name = '.'
+                    while '.' in other_name:
+                        other_name = await bot.api_client.get(
+                            'bot/off-topic-channel-names', params={'random_items': 1}
+                        )
+                channel_0_name, channel_1_name, channel_2_name = names
         except ResponseCodeError as e:
             log.error(f"Failed to get new off topic channel names: code {e.response.status}")
             continue

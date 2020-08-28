@@ -329,15 +329,28 @@ class OffTopicName(Converter):
 
     async def convert(self, ctx: Context, argument: str) -> str:
         """Attempt to replace any invalid characters with their approximate Unicode equivalent."""
+        if '\n' in argument:
+            # This is a group of names, instead of just one
+            lines = argument.strip().split('\n')
+            converted_name = ''
+            for x, i in enumerate(lines):
+                converted_name += self._convert(i) + '.'
+                if x == 2:
+                    break  # maximum of 3 entries allowed
+            return converted_name[:-1]  # remove trailing dot
+        else:
+            return self._convert(argument)
+
+    def _convert(self, line: str) -> str:
         allowed_characters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ!?'`-"
 
         # Chain multiple words to a single one
-        argument = "-".join(argument.split())
+        line = "-".join(line.split())
 
-        if not (2 <= len(argument) <= 96):
+        if not (2 <= len(line) <= 96):
             raise BadArgument("Channel name must be between 2 and 96 chars long")
 
-        elif not all(c.isalnum() or c in allowed_characters for c in argument):
+        elif not all(c.isalnum() or c in allowed_characters for c in line):
             raise BadArgument(
                 "Channel name must only consist of "
                 "alphanumeric characters, minus signs or apostrophes."
@@ -347,7 +360,7 @@ class OffTopicName(Converter):
         table = str.maketrans(
             allowed_characters, '𝖠𝖡𝖢𝖣𝖤𝖥𝖦𝖧𝖨𝖩𝖪𝖫𝖬𝖭𝖮𝖯𝖰𝖱𝖲𝖳𝖴𝖵𝖶𝖷𝖸𝖹ǃ？’’-'
         )
-        return argument.translate(table)
+        return line.translate(table)
 
 
 class ISODateTime(Converter):
